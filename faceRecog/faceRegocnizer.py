@@ -1,7 +1,18 @@
+import sys
 import cv2
 import matplotlib.pyplot as plt
 
-pic = cv2.imread("face.jpg", 1)
+if len(sys.argv) != 2:
+    print("Please provide image name")
+    exit(1)
+
+argvStr = sys.argv[1]
+	
+pic = cv2.imread(argvStr, 1)
+
+if not pic.any():
+    print("Not a picture")
+    exit(1)
 
 classifier = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_alt2.xml")
 
@@ -28,4 +39,9 @@ plt.imshow(pic)
 plt.show()
 
 pic = cv2.cvtColor(pic, cv2.COLOR_RGB2BGR)
-cv2.imwrite("face2.jpg",pic)
+newpic = ""
+newpic += "facedetect_"
+newpic += argvStr
+
+print(newpic)
+cv2.imwrite(newpic ,pic)
