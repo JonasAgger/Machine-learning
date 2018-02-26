@@ -24,20 +24,20 @@ rec_lbph = cv2.face.LBPHFaceRecognizer_create()
 
 rec_lbph.train(images, labels)
 
-#collector = cv2.face.StandardCollector_create()
+# collector = cv2.face.StandardCollector_create()
 
-#face = images[25]
+# face = images[25]
 
 face = cv2.imread("face.jpg", 2)
 
-#cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
+# cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
 
 collector = rec_lbph.predict(face)
 
 print(collector)
 
-#plt.imshow(face)
-#plt.show()
+# plt.imshow(face)
+# plt.show()
 
 while True:
     cv2.imshow('test', face)

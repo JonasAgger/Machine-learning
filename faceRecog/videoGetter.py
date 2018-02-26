@@ -2,7 +2,11 @@ from urllib import request
 import cv2
 import numpy as np
 import os
+import sys
 
+if len(sys.argv) < 2:
+    print("Needs to give adress to webcam")
+    exit(1)
 
 url = "http://100.82.132.229:8080/shot.jpg"
 
@@ -37,7 +41,7 @@ while True:
     if capture == True and len(faces_coord) > 0:
         cv2.imwrite(os.path.join(("./"+personname),(personname+str(count)+".jpg")), img=img)
         count += 1
-    if count >= 50:
+    if count >= 25:
         capture = False
         count = 0
 
@@ -45,7 +49,6 @@ while True:
     if ord('q') == switch:
         exit(0)
     elif ord('s') == switch:
-        print("Hello world")
         cv2.destroyAllWindows()
         personname = input("Enter name of person")
         if not os.path.exists(personname):
